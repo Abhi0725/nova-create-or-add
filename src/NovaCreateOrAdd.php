@@ -313,7 +313,7 @@ class NovaCreateOrAdd extends Field {
 	 * @param  bool  $nullable
 	 * @return $this
 	 */
-	public function nullable($nullable = true) {
+	public function nullable($nullable = true, $values = null) {
 		$this->nullable = $nullable;
 
 		return $this;
