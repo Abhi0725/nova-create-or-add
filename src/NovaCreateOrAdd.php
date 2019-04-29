@@ -7,13 +7,14 @@ use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\FormatsRelatableDisplayValues;
 use Laravel\Nova\Fields\ResourceRelationshipGuesser;
+use Laravel\Nova\Fields\ResolvesReverseRelation;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Rules\Relatable;
 use Laravel\Nova\TrashedStatus;
 use Shivanshrajpoot\NovaCreateOrAdd\Traits\HasChildren;
 
 class NovaCreateOrAdd extends Field {
-	use FormatsRelatableDisplayValues, HasChildren;
+	use FormatsRelatableDisplayValues, HasChildren, ResolvesReverseRelation;
 
 	/**
 	 * The field's component.
@@ -185,7 +186,7 @@ class NovaCreateOrAdd extends Field {
 	 * @return void
 	 */
 	public function fill(NovaRequest $request, $model) {
-		parent::fillInto($request, $model, $model->{ $this->attribute}()->getForeignKey());
+		parent::fillInto($request, $model, $this->getRelationForeignKeyName($model->{ $this->attribute}()));
 
 		if ($this->filledCallback) {
 			call_user_func($this->filledCallback, $request, $model);
