@@ -255,7 +255,8 @@ export default {
 
         selectCreatedResource(resource){
             this.availableResources = [resource]
-            this.selectedResource = resource
+            this.selectedResourceId = resource.value
+            this.selectInitialResource()
         }
     },
 

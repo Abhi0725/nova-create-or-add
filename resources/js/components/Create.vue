@@ -121,7 +121,7 @@ export default {
 
                 this.$emit('hide-form')
                 var value = response.data['id']
-                var display = response.data[this.field.title]
+                var display = response.data['resource'][this.field.title]
                 this.$emit('select-created', {value:value, display:display})
 
 
