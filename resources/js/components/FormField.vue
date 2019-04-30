@@ -71,8 +71,9 @@
                 </label>
             </div>
 
-            <Create 
+            <Create
                 v-if="shouldShowForm"
+                :resource-name="field.resourceName"
                 :field="field"
                 :parent="field"
                 :errors="errors"
