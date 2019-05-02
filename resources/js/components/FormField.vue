@@ -71,8 +71,9 @@
                 </label>
             </div>
 
-            <Create 
+            <Create
                 v-if="shouldShowForm"
+                :resource-name="field.resourceName"
                 :field="field"
                 :parent="field"
                 :errors="errors"
@@ -254,7 +255,8 @@ export default {
 
         selectCreatedResource(resource){
             this.availableResources = [resource]
-            this.selectedResource = resource
+            this.selectedResourceId = resource.value
+            this.selectInitialResource()
         }
     },
 
